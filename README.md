@@ -1,6 +1,7 @@
 # Movies-app
 An iOS application that displays movies and tv shows that are currently trending.
 
+* Currently in development*
 - Made with a Programmatic UI
 - Uses data from the Movie Database API
 
