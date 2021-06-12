@@ -11,23 +11,26 @@ import Combine
 class MovieListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var cachedImages = [IndexPath: UIImage]()
-    var cancellables = Set<AnyCancellable>()
-    var movies: [MovieDetails] = []
+    private var cancellables = Set<AnyCancellable>()
+    private var movies: [MovieDetails] = []
+    private var genres: [Genre] = []
     let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupMainView()
         setupNavController()
         setupTableView()
+        fetchGenres()
         fetchMovies()
     }
     
+    // This function returns the number of cells within the table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
     
+    // This function is responsible for populating an individual cell within the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let urlString = "\(IMAGE_BASE_URL)/\(IMAGE_SIZE)/\(movies[indexPath.row].poster_path)"
@@ -35,6 +38,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         // Retrieve the movie poster image for the corresponding movie
         fetchImage(at: urlString, for: indexPath, cell: cell)
         
+        // Set the text field for the cell labels
         cell.titleLabel.text = movies[indexPath.row].title
         cell.releaseDateLabel.text = "Released: \(movies[indexPath.row].release_date)"
         
@@ -49,11 +53,20 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
+    // This function will run whenever a user selects a cell within the table view
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Get ready to open the detail VC
         let rootVC = MovieDetailViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
-        tableView.deselectRow(at: indexPath, animated: true)
         
+        // Pass the chosen movie to the movie detail VC
+        rootVC.movie = movies[indexPath.row]
+        
+        // Get the genres for the current movie
+        rootVC.genres = getCurrentMovieGenres(movie: movies[indexPath.row]).joined(separator: ", ")
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         present(navVC, animated: true, completion: nil)
     }
 }
@@ -94,6 +107,7 @@ extension MovieListViewController {
 // MARK: API
 extension MovieListViewController {
     
+    // Fetch all movies that are currently trending from the api
     func fetchMovies() {
         API_Request.fetchMoviesWithCombine()
             .sink { results in
@@ -106,6 +120,20 @@ extension MovieListViewController {
             .store(in: &cancellables)
     }
     
+    // Fetches all possible movie genres from the api
+    func fetchGenres() {
+        API_Request.fetchGenresWithCombine()
+            .sink { genres in
+                self.genres = genres
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // Fetch the image for the corresponding movie
     func fetchImage(at endpoint: String, for indexPath: IndexPath, cell: MovieCell) {
         guard let url = URL(string: endpoint) else { return }
         
@@ -126,6 +154,18 @@ extension MovieListViewController {
                 }
                 .store(in: &cancellables)
         }
+    }
+    
+    // Returns an array holding all the genres that pertain to the current movie
+    func getCurrentMovieGenres(movie: MovieDetails) -> [String] {
+        var currentGenres: [String] = []
+        
+        for genre in genres {
+            if movie.genre_ids.contains(genre.id) {
+                currentGenres.append(genre.name)
+            }
+        }
+        return currentGenres
     }
 }
 

@@ -16,7 +16,6 @@ class MovieCell: UITableViewCell {
     
     let favoriteButton = UIButton()
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -62,7 +61,6 @@ class MovieCell: UITableViewCell {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 5),
-            //titleLabel.heightAnchor.constraint(equalToConstant: 80),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
     }
@@ -76,6 +74,7 @@ class MovieCell: UITableViewCell {
         releaseDateLabel.preferredMaxLayoutWidth = 200
         contentView.addSubview(releaseDateLabel)
         
+        // Constraints
         releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

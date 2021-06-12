@@ -14,5 +14,6 @@ let TIME_WINDOW = "day" // Time window for trending request. Can be "day" or "we
 let IMAGE_BASE_URL = "http://image.tmdb.org/t/p" // Base URL for image request
 let IMAGE_SIZE = "original" // The size of the movie poster image
 let GENRE_MODE = "movie" // Either "movie" or "tv"
+let GENRE = "genre"
 
 // Sample request for movies that are trending today: "base_url + /mode + /media_type + /time_window + ?api_key=api_key"
