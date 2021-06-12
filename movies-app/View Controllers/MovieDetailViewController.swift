@@ -30,11 +30,11 @@ extension MovieDetailViewController {
     
     func setupMainView() {
         title = "Movie Details"
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .black.withAlphaComponent(0.95)
     }
     
     func setupMovieTitleLabel() {
-        movieTitleLabel.text = movie?.title
+        movieTitleLabel.text = movie?.title ?? ""
         movieTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         movieTitleLabel.textColor = UIColor.init(white: 1, alpha: 0.87)
         movieTitleLabel.adjustsFontSizeToFitWidth = true
@@ -52,9 +52,9 @@ extension MovieDetailViewController {
     }
     
     func setupMovieGenresLabel() {
-        movieGenresLabel.text = genres
-        movieGenresLabel.font = UIFont.systemFont(ofSize: 12)
-        movieGenresLabel.textColor = .white
+        movieGenresLabel.text = genres ?? ""
+        movieGenresLabel.font = UIFont.systemFont(ofSize: 15)
+        movieGenresLabel.textColor = UIColor.systemOrange.withAlphaComponent(0.77)
         movieGenresLabel.numberOfLines = 0
         movieGenresLabel.lineBreakMode = .byWordWrapping
         movieGenresLabel.minimumScaleFactor = 0.8
@@ -66,12 +66,13 @@ extension MovieDetailViewController {
         
         NSLayoutConstraint.activate([
             movieGenresLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 10),
-            movieGenresLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor)
+            movieGenresLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor),
+            movieGenresLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
     }
     
     func setupMovieOverviewLabel() {
-        movieOverviewLabel.text = movie?.overview
+        movieOverviewLabel.text = movie?.overview ?? ""
         movieOverviewLabel.font = UIFont.systemFont(ofSize: 15)
         movieOverviewLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
         movieOverviewLabel.adjustsFontSizeToFitWidth = true

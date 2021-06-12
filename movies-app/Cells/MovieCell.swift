@@ -19,7 +19,7 @@ class MovieCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .systemGray6
+        contentView.backgroundColor = .black.withAlphaComponent(0.87)
         setupPhoto()
         setupTitleLabel()
         setupReleaseDateLabel()
@@ -35,20 +35,20 @@ class MovieCell: UITableViewCell {
         contentView.addSubview(photo)
         photo.clipsToBounds = true
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.contentMode = .scaleAspectFit
+        photo.contentMode = .scaleAspectFill
         
         
         NSLayoutConstraint.activate([
             photo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            photo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            photo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             photo.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -190),
             photo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
     }
     
     func setupTitleLabel() {
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.textColor = UIColor.init(white: 1, alpha: 0.87)
         titleLabel.numberOfLines = 0
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.lineBreakMode = .byWordWrapping
@@ -66,8 +66,8 @@ class MovieCell: UITableViewCell {
     }
     
     func setupReleaseDateLabel() {
-        releaseDateLabel.font = UIFont.systemFont(ofSize: 12)
-        releaseDateLabel.textColor = .white
+        releaseDateLabel.font = UIFont.systemFont(ofSize: 14)
+        releaseDateLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
         releaseDateLabel.numberOfLines = 0
         releaseDateLabel.lineBreakMode = .byWordWrapping
         releaseDateLabel.minimumScaleFactor = 0.8
@@ -84,8 +84,8 @@ class MovieCell: UITableViewCell {
     }
     
     func setupVoteAverageLabel() {
-        voteAverageLabel.font = UIFont.systemFont(ofSize: 12)
-        voteAverageLabel.textColor = .white
+        voteAverageLabel.font = UIFont.systemFont(ofSize: 14)
+        voteAverageLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
         contentView.addSubview(voteAverageLabel)
         
         // Constraints
@@ -98,8 +98,10 @@ class MovieCell: UITableViewCell {
     }
     
     func setupFavoriteButton() {
-        favoriteButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        favoriteButton.tintColor = .white
+        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        
+        favoriteButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: config), for: .normal)
+        favoriteButton.tintColor = UIColor.init(white: 1, alpha: 0.67)
         contentView.addSubview(favoriteButton)
         
         // Constraints

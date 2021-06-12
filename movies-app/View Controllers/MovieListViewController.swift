@@ -40,7 +40,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Set the text field for the cell labels
         cell.titleLabel.text = movies[indexPath.row].title
-        cell.releaseDateLabel.text = "Released: \(movies[indexPath.row].release_date)"
+        cell.releaseDateLabel.text = "Release Date: \(movies[indexPath.row].release_date)"
         
         // If the current movie rating is zero, display a "not yet rated" message
         if movies[indexPath.row].vote_average == 0 {
@@ -49,6 +49,8 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         else {
             cell.voteAverageLabel.text = "Rating: \(movies[indexPath.row].vote_average)/10"
         }
+        
+        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
@@ -80,15 +82,17 @@ extension MovieListViewController {
     }
     
     func setupNavController() {
-        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 237/240.0, green: 0/240.0, blue: 38/240.0, alpha: 0.87)
     }
     
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
-        tableView.rowHeight = 250
-        tableView.backgroundColor = .systemGray6
+        tableView.rowHeight = 300
+        tableView.backgroundColor = .black.withAlphaComponent(0.87)
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
         view.addSubview(tableView)
         
         // Constraints
@@ -101,7 +105,6 @@ extension MovieListViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
 }
 
 // MARK: API
