@@ -11,9 +11,22 @@ import Combine
 
 struct API_Request {
     
-    static func fetchMoviesWithCombine() -> AnyPublisher<[MovieDetails], Never> {
-        let urlString = "\(BASE_URL)/\(MODE)/\(MEDIA_TYPE)/\(TIME_WINDOW)?api_key=\(API_KEY)"
-        
+    static func setUrl(mode: MovieMode) -> String {
+        switch mode {
+        case .Trending:
+            return "\(BASE_URL)/\(MODE)/\(MEDIA_TYPE)/\(TIME_WINDOW)?api_key=\(API_KEY)"
+        case .NowPlaying:
+            return "\(BASE_URL)/\(MEDIA_TYPE)/now_playing?api_key=\(API_KEY)"
+        case .Upcoming:
+            return "\(BASE_URL)/\(MEDIA_TYPE)/upcoming?api_key=\(API_KEY)"
+        case .TopRated:
+            return "\(BASE_URL)/\(MEDIA_TYPE)/top_rated?api_key=\(API_KEY)"
+        case .Popular:
+            return "\(BASE_URL)/\(MEDIA_TYPE)/popular?api_key=\(API_KEY)"
+        }
+    }
+    
+    static func fetchMoviesFromAPI(urlString: String) -> AnyPublisher<[MovieDetails], Never> {
         guard let url = URL(string: urlString) else {
             return Just([]).eraseToAnyPublisher()
         }

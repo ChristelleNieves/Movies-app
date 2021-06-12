@@ -10,16 +10,16 @@ import Combine
 
 class MovieListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var mode: MovieMode = MovieMode.NowPlaying
     private var cachedImages = [IndexPath: UIImage]()
     private var cancellables = Set<AnyCancellable>()
     private var movies: [MovieDetails] = []
     private var genres: [Genre] = []
-    let tableView = UITableView()
+    private let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainView()
-        setupNavController()
         setupTableView()
         fetchGenres()
         fetchMovies()
@@ -78,11 +78,19 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
 extension MovieListViewController {
     
     func setupMainView() {
-        title = "Trending Movies"
-    }
-    
-    func setupNavController() {
-        navigationController?.navigationBar.barTintColor = Colors.red
+        // Set title according to mode
+        switch mode {
+        case .Trending:
+            title = "Today's Trending Movies"
+        case .NowPlaying:
+            title = "Now Playing"
+        case .Upcoming:
+            title = "Upcoming Movies"
+        case .TopRated:
+            title = "Top Rated Movies"
+        case .Popular:
+            title = "Popular Movies"
+        }
     }
     
     func setupTableView() {
@@ -112,7 +120,10 @@ extension MovieListViewController {
     
     // Fetch all movies that are currently trending from the api
     func fetchMovies() {
-        API_Request.fetchMoviesWithCombine()
+        let urlString = API_Request.setUrl(mode: mode)
+        
+        // Make the request to the API
+        API_Request.fetchMoviesFromAPI(urlString: urlString)
             .sink { results in
                 self.movies = results
                 
