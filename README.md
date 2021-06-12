@@ -5,4 +5,5 @@ An iOS application that displays movies and tv shows that are currently trending
 - Made with a Programmatic UI
 - Uses data from the Movie Database API
 
-![Screen Shot 2021-06-11 at 3 27 03 AM](https://user-images.githubusercontent.com/29238419/121648226-48fd4e80-ca65-11eb-8a2f-d7d904d14f20.png)
+![Screen Shot 2021-06-12 at 4 01 52 AM](https://user-images.githubusercontent.com/29238419/121769736-508b2900-cb33-11eb-9f19-ff28442cd4e3.png)
+![Screen Shot 2021-06-12 at 4 03 12 AM](https://user-images.githubusercontent.com/29238419/121769737-5254ec80-cb33-11eb-9f41-bf5f414c01e9.png)
