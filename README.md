@@ -15,5 +15,4 @@ Further Details:
 ![Screen Shot 2021-06-13 at 3 18 47 AM](https://user-images.githubusercontent.com/29238419/121798865-ba203b80-cbf6-11eb-96f1-9e059136f65c.png)
 ![Screen Shot 2021-06-13 at 3 19 54 AM](https://user-images.githubusercontent.com/29238419/121798866-ba203b80-cbf6-11eb-8c5b-17acee84c5d6.png)
 ![Screen Shot 2021-06-13 at 3 20 28 AM](https://user-images.githubusercontent.com/29238419/121798867-ba203b80-cbf6-11eb-92a8-cf97cc392ba9.png)
-![Screen Shot 2021-06-13 at 3 20 43 AM](https://user-images.githubusercontent.com/29238419/121798868-bab8d200-cbf6-11eb-80b4-f18c9f0dc7af.png)
 ![Screen Shot 2021-06-13 at 3 21 07 AM](https://user-images.githubusercontent.com/29238419/121798869-bab8d200-cbf6-11eb-83de-12efb52be325.png)
