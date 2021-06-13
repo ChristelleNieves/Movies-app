@@ -42,9 +42,10 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = TVShowDetailViewController()
+        let navVC = UINavigationController(rootViewController: detailVC)
         detailVC.show = shows[indexPath.row]
         detailVC.genres = getCurrenShowGenres(show: shows[indexPath.row]).joined(separator: ", ")
-        present(detailVC, animated: true, completion: nil)
+        present(navVC, animated: true, completion: nil)
     }
 
 }

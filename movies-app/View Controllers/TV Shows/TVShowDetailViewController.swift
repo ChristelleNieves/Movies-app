@@ -20,6 +20,8 @@ class TVShowDetailViewController: UIViewController {
         super.viewDidLoad()
         setupMainView()
         setupTitleLabel()
+        setupGenresLabel()
+        setupOverviewLabel()
     }
 
 }
@@ -48,6 +50,45 @@ extension TVShowDetailViewController {
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    
+    func setupGenresLabel() {
+        genresLabel.text = genres ?? ""
+        genresLabel.font = UIFont.systemFont(ofSize: 15)
+        genresLabel.textColor = UIColor.systemOrange.withAlphaComponent(0.77)
+        genresLabel.numberOfLines = 0
+        genresLabel.lineBreakMode = .byWordWrapping
+        genresLabel.minimumScaleFactor = 0.8
+        genresLabel.preferredMaxLayoutWidth = 200
+        view.addSubview(genresLabel)
+        
+        // Constraints
+        genresLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            genresLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            genresLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            genresLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    func setupOverviewLabel() {
+        overviewLabel.text = show?.overview ?? ""
+        overviewLabel.font = UIFont.systemFont(ofSize: 15)
+        overviewLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
+        overviewLabel.adjustsFontSizeToFitWidth = true
+        overviewLabel.numberOfLines = 0
+        view.addSubview(overviewLabel)
+        
+        // Constraints
+        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            overviewLabel.topAnchor.constraint(equalTo: genresLabel.bottomAnchor, constant: 10),
+            overviewLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            overviewLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
     }
 }
