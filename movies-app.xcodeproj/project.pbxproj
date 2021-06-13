@@ -74,18 +74,18 @@
 				BCF1BF822671BC2900FB9217 /* API_Details.swift */,
 				BCF1BF7E2671B9BA00FB9217 /* API_Request.swift */,
 				BCF1BF802671BA1F00FB9217 /* API_Response.swift */,
+				BCC0E5F2267570B700E12B3E /* ListModes.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
 		};
-		BCC0E5F526757B8800E12B3E /* Table View */ = {
+		BCC0E5F526757B8800E12B3E /* TableView */ = {
 			isa = PBXGroup;
 			children = (
 				BCF1BF842671CD0500FB9217 /* MovieCell.swift */,
-				BCC0E5F2267570B700E12B3E /* ListModes.swift */,
 				BCC0E5FA26759E8900E12B3E /* TVShowCell.swift */,
 			);
-			path = "Table View";
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		BCC0E5F626759CC400E12B3E /* Movies */ = {
@@ -104,6 +104,14 @@
 				BCC0E5FC2675ADFF00E12B3E /* TVShowDetailViewController.swift */,
 			);
 			path = "TV Shows";
+			sourceTree = "<group>";
+		};
+		BCC0E5FE2675B6D400E12B3E /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				BCC0E5F026752E7000E12B3E /* MainViewController.swift */,
+			);
+			path = "Home Screen";
 			sourceTree = "<group>";
 		};
 		BCF1BF532671B52300FB9217 = {
@@ -125,6 +133,7 @@
 		BCF1BF5E2671B52300FB9217 /* movies-app */ = {
 			isa = PBXGroup;
 			children = (
+				BCC0E5F526757B8800E12B3E /* TableView */,
 				BCC0E5ED26752C9500E12B3E /* Theme */,
 				BCF1BF792671B7B300FB9217 /* Models */,
 				BCF1BF762671B79400FB9217 /* View Controllers */,
@@ -140,7 +149,7 @@
 		BCF1BF762671B79400FB9217 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BCC0E5F026752E7000E12B3E /* MainViewController.swift */,
+				BCC0E5FE2675B6D400E12B3E /* Home Screen */,
 				BCC0E5F726759CE500E12B3E /* TV Shows */,
 				BCC0E5F626759CC400E12B3E /* Movies */,
 			);
@@ -150,7 +159,6 @@
 		BCF1BF792671B7B300FB9217 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BCC0E5F526757B8800E12B3E /* Table View */,
 				BCC0E5F426757B7000E12B3E /* API */,
 			);
 			path = Models;

@@ -11,6 +11,8 @@ class TVShowCell: UITableViewCell {
     
     var photo = UIImageView()
     let titleLabel = UILabel()
+    let voteAverageLabel = UILabel()
+    let favoriteButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,6 +20,8 @@ class TVShowCell: UITableViewCell {
         setupMainView()
         setupPhoto()
         setupTitleLabel()
+        setupVoteAverageLabel()
+        setupFavoriteButton()
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +70,36 @@ extension TVShowCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 5),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+        ])
+    }
+    
+    func setupVoteAverageLabel() {
+        voteAverageLabel.font = UIFont.systemFont(ofSize: 14)
+        voteAverageLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
+        contentView.addSubview(voteAverageLabel)
+        
+        // Constraints
+        voteAverageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            voteAverageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            voteAverageLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
+        ])
+    }
+    
+    func setupFavoriteButton() {
+        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        
+        favoriteButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: config), for: .normal)
+        favoriteButton.tintColor = UIColor.init(white: 1, alpha: 0.67)
+        contentView.addSubview(favoriteButton)
+        
+        // Constraints
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            favoriteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }

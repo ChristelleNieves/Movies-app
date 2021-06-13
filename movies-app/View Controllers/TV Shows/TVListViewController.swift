@@ -37,6 +37,13 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
         fetchImage(at: urlString, for: indexPath, cell: cell)
         cell.titleLabel.text = shows[indexPath.row].name
         
+        if shows[indexPath.row].vote_average == 0 {
+            cell.voteAverageLabel.text = "Rating: Not Yet Rated"
+        }
+        else {
+            cell.voteAverageLabel.text = "Rating: \(shows[indexPath.row].vote_average)/10"
+        }
+        
         return cell
     }
     
