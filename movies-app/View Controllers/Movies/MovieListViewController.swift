@@ -120,7 +120,7 @@ extension MovieListViewController {
     
     // Fetch all movies that are currently trending from the api
     func fetchMovies() {
-        let urlString = API_Request.setUrl(mode: mode)
+        let urlString = API_Request.setMovieRequestUrl(mode: mode)
         
         // Make the request to the API
         API_Request.fetchMoviesFromAPI(urlString: urlString)

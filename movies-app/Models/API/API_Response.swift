@@ -33,3 +33,19 @@ struct Genre: Codable {
     var id: Int
     var name: String
 }
+
+// MARK: TV Show Request
+
+struct Show_Response: Codable {
+    var page: Int
+    var results: [ShowDetails]
+}
+
+struct ShowDetails: Codable {
+    var poster_path: String
+    var name: String
+    var first_air_date: String
+    var overview: String
+    var genre_ids: [Int]
+    var vote_average: Float
+}

@@ -11,7 +11,8 @@ import Combine
 
 struct API_Request {
     
-    static func setUrl(mode: MovieMode) -> String {
+    // Movie requests
+    static func setMovieRequestUrl(mode: MovieMode) -> String {
         switch mode {
         case .Trending:
             return "\(BASE_URL)/\(MODE)/\(MEDIA_TYPE)/\(TIME_WINDOW)?api_key=\(API_KEY)"
@@ -51,6 +52,37 @@ struct API_Request {
             .map(\.data)
             .decode(type: Genre_Response.self, decoder: JSONDecoder())
             .map(\.genres)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    // TV Show requests
+    static func setShowRequestUrl(mode: TVMode) -> String {
+        
+        switch mode {
+        case .Trending:
+            return "\(BASE_URL)/\(MODE)/tv/\(TIME_WINDOW)?api_key=\(API_KEY)"
+        case .TopRated:
+            return "\(BASE_URL)/tv/top_rated?api_key=\(API_KEY)"
+        case .Popular:
+            return "\(BASE_URL)/tv/popular?api_key=\(API_KEY)"
+        case .AiringToday:
+            return "\(BASE_URL)/tv/airing_today?api_key=\(API_KEY)"
+        case .CurrentlyAiring:
+            return "\(BASE_URL)/tv/on_the_air?api_key=\(API_KEY)"
+        }
+    }
+    
+    static func fetchShowsFromAPI(urlString: String) -> AnyPublisher<[ShowDetails], Never> {
+        guard let url = URL(string: urlString) else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: Show_Response.self, decoder: JSONDecoder())
+            .map(\.results)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

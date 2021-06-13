@@ -111,6 +111,12 @@ extension MainViewController {
         todayShowsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         view.addSubview(todayShowsButton)
         
+        todayShowsButton.addAction(UIAction { action in
+            let listVC = TVListViewController()
+            listVC.mode = TVMode.Trending
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }, for: .touchUpInside)
+        
         // Constraints
         todayShowsButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -256,6 +262,12 @@ extension MainViewController {
         topRatedShowsButton.alpha = 0.70
         view.addSubview(topRatedShowsButton)
         
+        topRatedShowsButton.addAction(UIAction { action in
+            let listVC = TVListViewController()
+            listVC.mode = TVMode.TopRated
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }, for: .touchUpInside)
+        
         // Constraints
         topRatedShowsButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -273,6 +285,12 @@ extension MainViewController {
         popularShowsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         popularShowsButton.alpha = 0.70
         view.addSubview(popularShowsButton)
+        
+        popularShowsButton.addAction(UIAction { action in
+            let listVC = TVListViewController()
+            listVC.mode = TVMode.Popular
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }, for: .touchUpInside)
         
         // Constraints
         popularShowsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -292,6 +310,12 @@ extension MainViewController {
         airingTodayButton.alpha = 0.70
         view.addSubview(airingTodayButton)
         
+        airingTodayButton.addAction(UIAction { action in
+            let listVC = TVListViewController()
+            listVC.mode = TVMode.AiringToday
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }, for: .touchUpInside)
+        
         // Constraints
         airingTodayButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -309,6 +333,12 @@ extension MainViewController {
         currentlyAiringButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         currentlyAiringButton.alpha = 0.70
         view.addSubview(currentlyAiringButton)
+        
+        currentlyAiringButton.addAction(UIAction { action in
+            let listVC = TVListViewController()
+            listVC.mode = TVMode.CurrentlyAiring
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }, for: .touchUpInside)
         
         // Constraints
         currentlyAiringButton.translatesAutoresizingMaskIntoConstraints = false
