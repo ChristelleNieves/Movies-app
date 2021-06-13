@@ -9,7 +9,7 @@ import UIKit
 
 class TVShowCell: UITableViewCell {
     
-    var photo = UIImageView()
+    let photo = UIImageView()
     let titleLabel = UILabel()
     let voteAverageLabel = UILabel()
     let favoriteButton = UIButton()
@@ -27,7 +27,6 @@ class TVShowCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 // MARK: UI Setup

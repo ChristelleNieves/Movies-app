@@ -11,10 +11,9 @@ class TVShowDetailViewController: UIViewController {
 
     var show: ShowDetails?
     var genres: String?
-    
-    let titleLabel = UILabel()
-    let genresLabel = UILabel()
-    let overviewLabel = UILabel()
+    private let titleLabel = UILabel()
+    private let genresLabel = UILabel()
+    private let overviewLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +22,6 @@ class TVShowDetailViewController: UIViewController {
         setupGenresLabel()
         setupOverviewLabel()
     }
-
 }
 
 // MARK: UI Setup

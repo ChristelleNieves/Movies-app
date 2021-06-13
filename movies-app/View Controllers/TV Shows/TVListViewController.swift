@@ -15,11 +15,10 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var cachedImages = [IndexPath: UIImage]()
     private var genres = [Genre]()
     private var shows = [ShowDetails]()
-    let tableView = UITableView()
+    private let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fetchTVShows()
         fetchGenres()
         setupMainView()
@@ -50,8 +49,10 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = TVShowDetailViewController()
         let navVC = UINavigationController(rootViewController: detailVC)
+        
         detailVC.show = shows[indexPath.row]
         detailVC.genres = getCurrenShowGenres(show: shows[indexPath.row]).joined(separator: ", ")
+        
         present(navVC, animated: true, completion: nil)
     }
 
@@ -166,5 +167,4 @@ extension TVListViewController {
         }
         return currentGenres
     }
-    
 }
