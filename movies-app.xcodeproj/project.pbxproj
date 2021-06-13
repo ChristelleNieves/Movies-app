@@ -114,6 +114,17 @@
 			path = "Home Screen";
 			sourceTree = "<group>";
 		};
+		BCC0E5FF2675B90E00E12B3E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BCF1BF612671B52300FB9217 /* SceneDelegate.swift */,
+				BCF1BF5F2671B52300FB9217 /* AppDelegate.swift */,
+				BCF1BF6B2671B52500FB9217 /* Assets.xcassets */,
+				BCF1BF6D2671B52500FB9217 /* LaunchScreen.storyboard */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		BCF1BF532671B52300FB9217 = {
 			isa = PBXGroup;
 			children = (
@@ -133,15 +144,12 @@
 		BCF1BF5E2671B52300FB9217 /* movies-app */ = {
 			isa = PBXGroup;
 			children = (
+				BCF1BF702671B52500FB9217 /* Info.plist */,
+				BCC0E5FF2675B90E00E12B3E /* Config */,
 				BCC0E5F526757B8800E12B3E /* TableView */,
 				BCC0E5ED26752C9500E12B3E /* Theme */,
 				BCF1BF792671B7B300FB9217 /* Models */,
 				BCF1BF762671B79400FB9217 /* View Controllers */,
-				BCF1BF5F2671B52300FB9217 /* AppDelegate.swift */,
-				BCF1BF612671B52300FB9217 /* SceneDelegate.swift */,
-				BCF1BF6B2671B52500FB9217 /* Assets.xcassets */,
-				BCF1BF6D2671B52500FB9217 /* LaunchScreen.storyboard */,
-				BCF1BF702671B52500FB9217 /* Info.plist */,
 			);
 			path = "movies-app";
 			sourceTree = "<group>";
