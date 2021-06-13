@@ -48,4 +48,5 @@ struct ShowDetails: Codable {
     var overview: String
     var genre_ids: [Int]
     var vote_average: Float
+    var original_language: String
 }

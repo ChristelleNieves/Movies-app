@@ -11,7 +11,6 @@ class MovieCell: UITableViewCell {
     
     var photo = UIImageView()
     var titleLabel = UILabel()
-    var releaseDateLabel = UILabel()
     var voteAverageLabel = UILabel()
     
     let favoriteButton = UIButton()
@@ -22,7 +21,6 @@ class MovieCell: UITableViewCell {
         contentView.backgroundColor = .black.withAlphaComponent(0.87)
         setupPhoto()
         setupTitleLabel()
-        setupReleaseDateLabel()
         setupVoteAverageLabel()
         setupFavoriteButton()
     }
@@ -65,24 +63,6 @@ class MovieCell: UITableViewCell {
         ])
     }
     
-    func setupReleaseDateLabel() {
-        releaseDateLabel.font = UIFont.systemFont(ofSize: 14)
-        releaseDateLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
-        releaseDateLabel.numberOfLines = 0
-        releaseDateLabel.lineBreakMode = .byWordWrapping
-        releaseDateLabel.minimumScaleFactor = 0.8
-        releaseDateLabel.preferredMaxLayoutWidth = 200
-        contentView.addSubview(releaseDateLabel)
-        
-        // Constraints
-        releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            releaseDateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            releaseDateLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
-        ])
-    }
-    
     func setupVoteAverageLabel() {
         voteAverageLabel.font = UIFont.systemFont(ofSize: 14)
         voteAverageLabel.textColor = UIColor.init(white: 1, alpha: 0.77)
@@ -92,8 +72,8 @@ class MovieCell: UITableViewCell {
         voteAverageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            voteAverageLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 10),
-            voteAverageLabel.leadingAnchor.constraint(equalTo: releaseDateLabel.leadingAnchor)
+            voteAverageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            voteAverageLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
         ])
     }
     
@@ -112,5 +92,4 @@ class MovieCell: UITableViewCell {
             favoriteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
-
 }

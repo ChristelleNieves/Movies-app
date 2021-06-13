@@ -40,7 +40,6 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Set the text field for the cell labels
         cell.titleLabel.text = movies[indexPath.row].title
-        cell.releaseDateLabel.text = "Release Date: \(movies[indexPath.row].release_date)"
         
         // If the current movie rating is zero, display a "not yet rated" message
         if movies[indexPath.row].vote_average == 0 {

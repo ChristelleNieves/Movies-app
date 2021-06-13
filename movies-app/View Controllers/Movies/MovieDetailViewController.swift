@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     
     private let movieTitleLabel = UILabel()
     private let movieGenresLabel = UILabel()
+    private let releaseDateLabel = UILabel()
     private let movieOverviewLabel = UILabel()
 
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ class MovieDetailViewController: UIViewController {
         setupMainView()
         setupMovieTitleLabel()
         setupMovieGenresLabel()
+        setupReleaseDateLabel()
         setupMovieOverviewLabel()
     }
 }
@@ -35,7 +37,7 @@ extension MovieDetailViewController {
     
     func setupMovieTitleLabel() {
         movieTitleLabel.text = movie?.title ?? ""
-        movieTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        movieTitleLabel.font = UIFont.boldSystemFont(ofSize: 35)
         movieTitleLabel.textColor = UIColor.init(white: 1, alpha: 0.87)
         movieTitleLabel.adjustsFontSizeToFitWidth = true
         movieTitleLabel.numberOfLines = 0
@@ -53,7 +55,7 @@ extension MovieDetailViewController {
     
     func setupMovieGenresLabel() {
         movieGenresLabel.text = genres ?? ""
-        movieGenresLabel.font = UIFont.systemFont(ofSize: 15)
+        movieGenresLabel.font = UIFont.systemFont(ofSize: 20)
         movieGenresLabel.textColor = UIColor.systemOrange.withAlphaComponent(0.77)
         movieGenresLabel.numberOfLines = 0
         movieGenresLabel.lineBreakMode = .byWordWrapping
@@ -65,9 +67,24 @@ extension MovieDetailViewController {
         movieGenresLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            movieGenresLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 10),
+            movieGenresLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 12),
             movieGenresLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor),
             movieGenresLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    func setupReleaseDateLabel() {
+        releaseDateLabel.text = "Release Date: \(movie?.release_date ?? "")"
+        releaseDateLabel.font = UIFont.systemFont(ofSize: 15)
+        releaseDateLabel.textColor = UIColor.init(white: 1, alpha: 0.67)
+        view.addSubview(releaseDateLabel)
+        
+        // Constraints
+        releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            releaseDateLabel.topAnchor.constraint(equalTo: movieGenresLabel.bottomAnchor, constant: 12),
+            releaseDateLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor)
         ])
     }
     
@@ -83,7 +100,7 @@ extension MovieDetailViewController {
         movieOverviewLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            movieOverviewLabel.topAnchor.constraint(equalTo: movieGenresLabel.bottomAnchor, constant: 10),
+            movieOverviewLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 12),
             movieOverviewLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             movieOverviewLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
