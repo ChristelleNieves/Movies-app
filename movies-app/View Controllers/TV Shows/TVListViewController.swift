@@ -35,8 +35,16 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let urlString = "\(IMAGE_BASE_URL)/\(IMAGE_SIZE)/\(shows[indexPath.row].poster_path)"
         
         fetchImage(at: urlString, for: indexPath, cell: cell)
+        cell.titleLabel.text = shows[indexPath.row].name
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = TVShowDetailViewController()
+        detailVC.show = shows[indexPath.row]
+        detailVC.genres = getCurrenShowGenres(show: shows[indexPath.row]).joined(separator: ", ")
+        present(detailVC, animated: true, completion: nil)
     }
 
 }
