@@ -10,23 +10,23 @@ import UIKit
 class MainViewController: UIViewController {
     
     // Trending Today section
-    let todayLabel = UILabel()
-    let todayMoviesButton = UIButton()
-    let todayShowsButton = UIButton()
+    private var todayLabel = UILabel()
+    private var todayMoviesButton = UIButton()
+    private var todayShowsButton = UIButton()
     
     // Movies section
-    let moviesLabel = UILabel()
-    let nowPlayingButton = UIButton()
-    let upcomingMoviesButton = UIButton()
-    let topRatedMoviesButton = UIButton()
-    let popularMoviesButton = UIButton()
+    private var moviesLabel = UILabel()
+    private var nowPlayingButton = UIButton()
+    private var upcomingMoviesButton = UIButton()
+    private var topRatedMoviesButton = UIButton()
+    private var popularMoviesButton = UIButton()
     
     // TV Shows section
-    let showsLabel = UILabel()
-    let topRatedShowsButton = UIButton()
-    let popularShowsButton = UIButton()
-    let airingTodayButton = UIButton()
-    let currentlyAiringButton = UIButton()
+    private var showsLabel = UILabel()
+    private var topRatedShowsButton = UIButton()
+    private var popularShowsButton = UIButton()
+    private var airingTodayButton = UIButton()
+    private var currentlyAiringButton = UIButton()
     
     
     override func viewDidLoad() {
@@ -55,6 +55,7 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: UI Setup
 extension MainViewController {
     func setupMainView() {
         title = "Discover Movies & TV Shows"
@@ -67,10 +68,7 @@ extension MainViewController {
     }
     
     func setupTodayLabel() {
-        todayLabel.text = "Trending Today"
-        todayLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 35, weight: .light)
-        todayLabel.textColor = UIColor.init(white: 1, alpha: 0.60)
-        view.addSubview(todayLabel)
+        configureHeading(label: todayLabel, title: "Trending Today")
         
         // Constraints
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -82,20 +80,11 @@ extension MainViewController {
     }
     
     func setupTodayMoviesButton() {
-        todayMoviesButton.setTitle("Movies", for: .normal)
-        todayMoviesButton.backgroundColor = .black
-        todayMoviesButton.layer.cornerRadius = 12
-        todayMoviesButton.layer.borderColor = Colors.purple.cgColor
-        todayMoviesButton.layer.borderWidth = 1
-        todayMoviesButton.alpha = 0.77
-        todayMoviesButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        view.addSubview(todayMoviesButton)
+        configureButton(button: todayMoviesButton, title: "Movies")
         
         // Add button action
         todayMoviesButton.addAction(UIAction { action in
-            let listVC = MovieListViewController()
-            listVC.mode = MovieMode.Trending
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openMovieListVC(mode: MovieMode.Trending)
         }, for: .touchUpInside)
         
         // Constraints
@@ -110,14 +99,7 @@ extension MainViewController {
     }
     
     func setupTodayShowsButton() {
-        todayShowsButton.setTitle("TV Shows", for: .normal)
-        todayShowsButton.backgroundColor = .black
-        todayShowsButton.layer.cornerRadius = 12
-        todayShowsButton.layer.borderWidth = 1
-        todayShowsButton.layer.borderColor = Colors.purple.cgColor
-        todayShowsButton.alpha = 0.77
-        todayShowsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        view.addSubview(todayShowsButton)
+        configureButton(button: todayShowsButton, title: "TV Shows")
         
         todayShowsButton.addAction(UIAction { action in
             let listVC = TVListViewController()
@@ -137,10 +119,7 @@ extension MainViewController {
     }
     
     func setupMoviesLabel() {
-        moviesLabel.text = "Movies"
-        moviesLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 35, weight: .light)
-        moviesLabel.textColor = UIColor.init(white: 1, alpha: 0.60)
-        view.addSubview(moviesLabel)
+        configureHeading(label: moviesLabel, title: "Movies")
         
         // Constraints
         moviesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -152,18 +131,10 @@ extension MainViewController {
     }
     
     func setupNowPlayingButton() {
-        nowPlayingButton.setTitle("Now Playing", for: .normal)
-        nowPlayingButton.layer.borderColor = Colors.purple.cgColor
-        nowPlayingButton.layer.borderWidth = 1
-        nowPlayingButton.layer.cornerRadius = 15
-        nowPlayingButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        nowPlayingButton.alpha = 0.70
-        view.addSubview(nowPlayingButton)
+        configureButton(button: nowPlayingButton, title: "Now Playing")
         
         nowPlayingButton.addAction(UIAction { action in
-            let listVC = MovieListViewController()
-            listVC.mode = MovieMode.NowPlaying
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openMovieListVC(mode: MovieMode.NowPlaying)
         }, for: .touchUpInside)
         
         // Constraints
@@ -178,18 +149,10 @@ extension MainViewController {
     }
     
     func setupUpcomingMoviesButton() {
-        upcomingMoviesButton.setTitle("Upcoming", for: .normal)
-        upcomingMoviesButton.layer.borderColor = Colors.purple.cgColor
-        upcomingMoviesButton.layer.borderWidth = 1
-        upcomingMoviesButton.layer.cornerRadius = 15
-        upcomingMoviesButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        upcomingMoviesButton.alpha = 0.70
-        view.addSubview(upcomingMoviesButton)
+        configureButton(button: upcomingMoviesButton, title: "Upcoming")
         
         upcomingMoviesButton.addAction(UIAction { action in
-            let listVC = MovieListViewController()
-            listVC.mode = MovieMode.Upcoming
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openMovieListVC(mode: MovieMode.Upcoming)
         }, for: .touchUpInside)
         
         // Constraints
@@ -204,18 +167,10 @@ extension MainViewController {
     }
     
     func setupTopRatedMoviesButton() {
-        topRatedMoviesButton.setTitle("Top Rated", for: .normal)
-        topRatedMoviesButton.layer.borderColor = Colors.purple.cgColor
-        topRatedMoviesButton.layer.borderWidth = 1
-        topRatedMoviesButton.layer.cornerRadius = 15
-        topRatedMoviesButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        topRatedMoviesButton.alpha = 0.70
-        view.addSubview(topRatedMoviesButton)
+        configureButton(button: topRatedMoviesButton, title: "Top Rated")
         
         topRatedMoviesButton.addAction(UIAction { action in
-            let listVC = MovieListViewController()
-            listVC.mode = MovieMode.TopRated
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openMovieListVC(mode: MovieMode.TopRated)
         }, for: .touchUpInside)
         
         // Constraints
@@ -230,18 +185,10 @@ extension MainViewController {
     }
     
     func setupPopularMoviesButton() {
-        popularMoviesButton.setTitle("Popular", for: .normal)
-        popularMoviesButton.layer.borderColor = Colors.purple.cgColor
-        popularMoviesButton.layer.borderWidth = 1
-        popularMoviesButton.layer.cornerRadius = 15
-        popularMoviesButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        popularMoviesButton.alpha = 0.70
-        view.addSubview(popularMoviesButton)
+        configureButton(button: popularMoviesButton, title: "Popular")
         
         popularMoviesButton.addAction(UIAction { action in
-            let listVC = MovieListViewController()
-            listVC.mode = MovieMode.Popular
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openMovieListVC(mode: MovieMode.Popular)
         }, for: .touchUpInside)
         
         // Constraints
@@ -253,14 +200,10 @@ extension MainViewController {
             popularMoviesButton.widthAnchor.constraint(equalToConstant: 175),
             popularMoviesButton.heightAnchor.constraint(equalToConstant: 70)
         ])
-        
     }
     
     func setupShowsLabel() {
-        showsLabel.text = "TV Shows"
-        showsLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 35, weight: .light)
-        showsLabel.textColor = UIColor.init(white: 1, alpha: 0.60)
-        view.addSubview(showsLabel)
+        configureHeading(label: showsLabel, title: "TV Shows")
         
         // Constraints
         showsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -272,18 +215,10 @@ extension MainViewController {
     }
     
     func setupTopRatedShowsButton() {
-        topRatedShowsButton.setTitle("Top Rated", for: .normal)
-        topRatedShowsButton.layer.borderColor = Colors.purple.cgColor
-        topRatedShowsButton.layer.borderWidth = 1
-        topRatedShowsButton.layer.cornerRadius = 15
-        topRatedShowsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        topRatedShowsButton.alpha = 0.70
-        view.addSubview(topRatedShowsButton)
+        configureButton(button: topRatedShowsButton, title: "Top Rated")
         
         topRatedShowsButton.addAction(UIAction { action in
-            let listVC = TVListViewController()
-            listVC.mode = TVMode.TopRated
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openTVListVC(mode: TVMode.TopRated)
         }, for: .touchUpInside)
         
         // Constraints
@@ -298,18 +233,10 @@ extension MainViewController {
     }
     
     func setupPopularShowsButton() {
-        popularShowsButton.setTitle("Popular", for: .normal)
-        popularShowsButton.layer.borderColor = Colors.purple.cgColor
-        popularShowsButton.layer.borderWidth = 1
-        popularShowsButton.layer.cornerRadius = 15
-        popularShowsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        popularShowsButton.alpha = 0.70
-        view.addSubview(popularShowsButton)
+        configureButton(button: popularShowsButton, title: "Popular")
         
         popularShowsButton.addAction(UIAction { action in
-            let listVC = TVListViewController()
-            listVC.mode = TVMode.Popular
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openTVListVC(mode: TVMode.Popular)
         }, for: .touchUpInside)
         
         // Constraints
@@ -324,18 +251,10 @@ extension MainViewController {
     }
     
     func setupAiringTodayButton() {
-        airingTodayButton.setTitle("Airing Today", for: .normal)
-        airingTodayButton.layer.borderColor = Colors.purple.cgColor
-        airingTodayButton.layer.borderWidth = 1
-        airingTodayButton.layer.cornerRadius = 15
-        airingTodayButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        airingTodayButton.alpha = 0.70
-        view.addSubview(airingTodayButton)
+        configureButton(button: airingTodayButton, title: "Airing Today")
         
         airingTodayButton.addAction(UIAction { action in
-            let listVC = TVListViewController()
-            listVC.mode = TVMode.AiringToday
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openTVListVC(mode: TVMode.AiringToday)
         }, for: .touchUpInside)
         
         // Constraints
@@ -350,18 +269,10 @@ extension MainViewController {
     }
     
     func setupCurrentlyAiringButton() {
-        currentlyAiringButton.setTitle("Currently Airing", for: .normal)
-        currentlyAiringButton.layer.borderColor = Colors.purple.cgColor
-        currentlyAiringButton.layer.borderWidth = 1
-        currentlyAiringButton.layer.cornerRadius = 15
-        currentlyAiringButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        currentlyAiringButton.alpha = 0.70
-        view.addSubview(currentlyAiringButton)
+        configureButton(button: currentlyAiringButton, title: "Currently Airing")
         
         currentlyAiringButton.addAction(UIAction { action in
-            let listVC = TVListViewController()
-            listVC.mode = TVMode.CurrentlyAiring
-            self.navigationController?.pushViewController(listVC, animated: true)
+            self.openTVListVC(mode: TVMode.CurrentlyAiring)
         }, for: .touchUpInside)
         
         // Constraints
@@ -373,5 +284,37 @@ extension MainViewController {
             currentlyAiringButton.widthAnchor.constraint(equalToConstant: 175),
             currentlyAiringButton.heightAnchor.constraint(equalToConstant: 70)
         ])
+    }
+}
+
+// MARK: Helper Functions
+extension MainViewController {
+    func openTVListVC(mode: TVMode) {
+        let listVC = TVListViewController()
+        listVC.mode = mode
+        self.navigationController?.pushViewController(listVC, animated: true)
+    }
+    
+    func openMovieListVC(mode: MovieMode) {
+        let listVC = MovieListViewController()
+        listVC.mode = mode
+        self.navigationController?.pushViewController(listVC, animated: true)
+    }
+    
+    func configureButton(button: UIButton, title: String) {
+        button.setTitle(title, for: .normal)
+        button.layer.borderColor = Colors.purple.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 15
+        button.contentEdgeInsets = Insets.button
+        button.alpha = Alphas.button
+        view.addSubview(button)
+    }
+    
+    func configureHeading(label: UILabel, title: String) {
+        label.text = title
+        label.font = Fonts.heading
+        label.textColor = Colors.heading
+        view.addSubview(label)
     }
 }
