@@ -1,10 +1,13 @@
 # Movies-app
-An iOS application that displays movies and TV shows that are currently trending, popular, upcoming, etc.
+An iOS application that allows you to discover your next favorite movie or TV show by browsing through different categories of popular trending movies/tv shows, seeing their average audience ratings, and watching their trailers.
+
 * Currently in development*
 
-Users have the option to browse through:
- - Movies that are: currently trending, currently playing in theaters, upcoming, popular, or top rated.
- - TV Shows that are: currently trending, top rated, popular, airing today, or currently airing.
+Users have the option to:
+ - Browse through movies that are currently trending, currently playing in theaters, upcoming, popular, or top rated.
+ - Browse through TV Shows that are currently trending, top rated, popular, airing today, or currently airing.
+ - Watch the movie/TV show trailer
+ - Read the description of the movie/TV show along with other information such as genres, release date, etc.
 
 Further Details:
  - Made with a Programmatic UI
