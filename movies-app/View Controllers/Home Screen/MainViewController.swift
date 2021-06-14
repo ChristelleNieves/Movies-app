@@ -307,8 +307,8 @@ extension MainViewController {
     func configureButton(button: UIButton, title: String) {
         button.setTitle(title, for: .normal)
         button.layer.borderColor = Colors.purple.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 1.5
+        button.layer.cornerRadius = 25
         button.contentEdgeInsets = Insets.button
         button.alpha = Alphas.button
         view.addSubview(button)
