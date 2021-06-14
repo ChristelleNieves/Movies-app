@@ -6,8 +6,8 @@ An iOS application that allows you to discover your next favorite movie or TV sh
 Users have the option to:
  - Browse through movies that are currently trending, currently playing in theaters, upcoming, popular, or top rated.
  - Browse through TV Shows that are currently trending, top rated, popular, airing today, or currently airing.
- - Watch the movie/TV show trailer
  - Read the description of the movie/TV show along with other information such as genres, release date, etc.
+ - Watch the movie/TV show official trailer
 
 Further Details:
  - Made with a Programmatic UI
