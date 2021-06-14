@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 
+// Displays a UITableView populated with TVCells
 class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var mode: TVMode = TVMode.Trending
@@ -25,17 +26,21 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupTableView()
     }
     
+    // Return the number of cells in the table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shows.count
     }
     
+    // Return a configured cell holding TV Show details
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TVShowCell", for: indexPath) as! TVShowCell
-        let urlString = "\(IMAGE_BASE_URL)/\(IMAGE_SIZE)/\(shows[indexPath.row].poster_path)"
+        let urlString = "\(IMAGE_BASE_URL)/original/\(shows[indexPath.row].poster_path)"
         
+        // Fetch the image associated with the current TV show
         fetchImage(at: urlString, for: indexPath, cell: cell)
         cell.titleLabel.text = shows[indexPath.row].name
         
+        // If the show doesn't have a vote average, display "not yet rated"
         if shows[indexPath.row].vote_average == 0 {
             cell.voteAverageLabel.text = "Rating: Not Yet Rated"
         }
@@ -46,16 +51,18 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    // Open a TVShowDetailViewController when a cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = TVShowDetailViewController()
         let navVC = UINavigationController(rootViewController: detailVC)
         
+        // Pass the selected TV show and its associated genres to the detail VC
         detailVC.show = shows[indexPath.row]
         detailVC.genres = getCurrenShowGenres(show: shows[indexPath.row]).joined(separator: ", ")
         
+        // Present the VC
         present(navVC, animated: true, completion: nil)
     }
-
 }
 
 // MARK: UI Setup
@@ -63,6 +70,7 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension TVListViewController {
     
     func setupMainView() {
+        // Set the title of the TVListViewController according to the current mode
         switch mode {
         case .Trending:
             title = "Today's Trending TV Shows"
@@ -75,9 +83,9 @@ extension TVListViewController {
         case .CurrentlyAiring:
             title = "TV Shows Currently Airing"
         }
-            
     }
     
+    // Configure the table view and set constraints
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -105,6 +113,7 @@ extension TVListViewController {
 
 extension TVListViewController {
     
+    // Make a TV Show request to the API
     func fetchTVShows() {
         let urlString = API_Request.setShowRequestUrl(mode: mode)
         

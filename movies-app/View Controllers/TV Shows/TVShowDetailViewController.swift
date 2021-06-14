@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Holds the details of a TV show
 class TVShowDetailViewController: UIViewController {
 
     var show: ShowDetails?

@@ -7,6 +7,9 @@
 
 import Foundation
 
+// A mode corresponds to the button the user chooses on the home screen.
+// The specified mode will determine the data that will be fetched from the API and displayed to the screen.
+
 enum MovieMode {
     case Trending
     case NowPlaying

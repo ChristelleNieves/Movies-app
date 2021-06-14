@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 
+// Displays a UITableView populated with MovieCells
 class MovieListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var mode: MovieMode = MovieMode.NowPlaying
@@ -33,7 +34,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     // This function is responsible for populating an individual cell within the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let urlString = "\(IMAGE_BASE_URL)/\(IMAGE_SIZE)/\(movies[indexPath.row].poster_path)"
+        let urlString = "\(IMAGE_BASE_URL)/original/\(movies[indexPath.row].poster_path)"
         
         // Retrieve the movie poster image for the corresponding movie
         fetchImage(at: urlString, for: indexPath, cell: cell)
@@ -92,6 +93,7 @@ extension MovieListViewController {
         }
     }
     
+    // Configure the table view
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self

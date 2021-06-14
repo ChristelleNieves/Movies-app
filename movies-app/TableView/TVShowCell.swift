@@ -7,16 +7,16 @@
 
 import UIKit
 
+// A cell that holds TV Show details
 class TVShowCell: UITableViewCell {
     
     let photo = UIImageView()
     let titleLabel = UILabel()
     let voteAverageLabel = UILabel()
-    let favoriteButton = UIButton()
+    private let favoriteButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupMainView()
         setupPhoto()
         setupTitleLabel()

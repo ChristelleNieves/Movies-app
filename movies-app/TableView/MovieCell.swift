@@ -1,24 +1,22 @@
 //
 //  MovieCell.swift
-//  tableViewApp
 //
 //  Created by Christelle Nieves on 6/10/21.
 //
 
 import UIKit
 
+// A cell that holds movie details
 class MovieCell: UITableViewCell {
     
-    var photo = UIImageView()
-    var titleLabel = UILabel()
-    var voteAverageLabel = UILabel()
-    
-    let favoriteButton = UIButton()
+    let photo = UIImageView()
+    let titleLabel = UILabel()
+    let voteAverageLabel = UILabel()
+    private let favoriteButton = UIButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.backgroundColor = .black.withAlphaComponent(0.87)
+        setupView()
         setupPhoto()
         setupTitleLabel()
         setupVoteAverageLabel()
@@ -27,6 +25,13 @@ class MovieCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: UI Setup
+extension MovieCell {
+    func setupView() {
+        contentView.backgroundColor = .black.withAlphaComponent(0.87)
     }
     
     func setupPhoto() {

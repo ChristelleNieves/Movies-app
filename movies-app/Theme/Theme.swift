@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// Colors for the UI theme
 struct Colors {
     static var purple = UIColor.init(red: 84/240.0, green: 22/240.0, blue: 180/240.0, alpha: 0.87)
     static var heading = UIColor.init(white: 1, alpha: 0.87)

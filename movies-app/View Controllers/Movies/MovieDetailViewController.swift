@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Holds the details of a movie
 class MovieDetailViewController: UIViewController {
     
     var movie: MovieDetails?

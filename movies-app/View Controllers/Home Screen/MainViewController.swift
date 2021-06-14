@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         setupMainView()
         setupNav()
         
-        // Trending section
+        // Trending Today section
         setupTodayLabel()
         setupTodayMoviesButton()
         setupTodayShowsButton()
@@ -82,7 +82,6 @@ extension MainViewController {
     func setupTodayMoviesButton() {
         configureButton(button: todayMoviesButton, title: "Movies")
         
-        // Add button action
         todayMoviesButton.addAction(UIAction { action in
             self.openMovieListVC(mode: MovieMode.Trending)
         }, for: .touchUpInside)
@@ -289,18 +288,22 @@ extension MainViewController {
 
 // MARK: Helper Functions
 extension MainViewController {
+    
+    // Open a TVListViewController and set the mode
     func openTVListVC(mode: TVMode) {
         let listVC = TVListViewController()
         listVC.mode = mode
         self.navigationController?.pushViewController(listVC, animated: true)
     }
     
+    // Open a MovieListViewController and set the mode
     func openMovieListVC(mode: MovieMode) {
         let listVC = MovieListViewController()
         listVC.mode = mode
         self.navigationController?.pushViewController(listVC, animated: true)
     }
     
+    // Configure the appearance of a button and add it to the main view
     func configureButton(button: UIButton, title: String) {
         button.setTitle(title, for: .normal)
         button.layer.borderColor = Colors.purple.cgColor
@@ -311,6 +314,7 @@ extension MainViewController {
         view.addSubview(button)
     }
     
+    // Configure the appearance of a label and add it to  the main view
     func configureHeading(label: UILabel, title: String) {
         label.text = title
         label.font = Fonts.heading

@@ -22,7 +22,7 @@
 		BCF1BF6F2671B52500FB9217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF1BF6D2671B52500FB9217 /* LaunchScreen.storyboard */; };
 		BCF1BF7F2671B9BA00FB9217 /* API_Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1BF7E2671B9BA00FB9217 /* API_Request.swift */; };
 		BCF1BF812671BA1F00FB9217 /* API_Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1BF802671BA1F00FB9217 /* API_Response.swift */; };
-		BCF1BF832671BC2900FB9217 /* API_Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1BF822671BC2900FB9217 /* API_Details.swift */; };
+		BCF1BF832671BC2900FB9217 /* API_Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1BF822671BC2900FB9217 /* API_Endpoints.swift */; };
 		BCF1BF852671CD0500FB9217 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF1BF842671CD0500FB9217 /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,7 @@
 		BCF1BF702671B52500FB9217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF1BF7E2671B9BA00FB9217 /* API_Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Request.swift; sourceTree = "<group>"; };
 		BCF1BF802671BA1F00FB9217 /* API_Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Response.swift; sourceTree = "<group>"; };
-		BCF1BF822671BC2900FB9217 /* API_Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Details.swift; sourceTree = "<group>"; };
+		BCF1BF822671BC2900FB9217 /* API_Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Endpoints.swift; sourceTree = "<group>"; };
 		BCF1BF842671CD0500FB9217 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				BCAAB86C2673471700735BAF /* API_Key.swift */,
-				BCF1BF822671BC2900FB9217 /* API_Details.swift */,
+				BCF1BF822671BC2900FB9217 /* API_Endpoints.swift */,
 				BCF1BF7E2671B9BA00FB9217 /* API_Request.swift */,
 				BCF1BF802671BA1F00FB9217 /* API_Response.swift */,
 				BCC0E5F2267570B700E12B3E /* ListModes.swift */,
@@ -242,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCC0E5FB26759E8900E12B3E /* TVShowCell.swift in Sources */,
-				BCF1BF832671BC2900FB9217 /* API_Details.swift in Sources */,
+				BCF1BF832671BC2900FB9217 /* API_Endpoints.swift in Sources */,
 				BCC0E5F126752E7000E12B3E /* MainViewController.swift in Sources */,
 				BCC0E5EF26752CAF00E12B3E /* Theme.swift in Sources */,
 				BCAAB86D2673471700735BAF /* API_Key.swift in Sources */,
