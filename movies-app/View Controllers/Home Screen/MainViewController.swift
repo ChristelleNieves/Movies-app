@@ -64,7 +64,6 @@ extension MainViewController {
     
     func setupNav() {
         navigationController?.navigationBar.tintColor = Colors.purple
-        navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = .black
     }
     
     func setupTodayLabel() {
@@ -308,7 +307,7 @@ extension MainViewController {
         button.setTitle(title, for: .normal)
         button.layer.borderColor = Colors.purple.cgColor
         button.layer.borderWidth = 1.5
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 30
         button.contentEdgeInsets = Insets.button
         button.alpha = Alphas.button
         view.addSubview(button)
