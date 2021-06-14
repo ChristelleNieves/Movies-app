@@ -21,6 +21,22 @@ struct MovieDetails: Codable {
     var release_date: String
     var vote_average: Float
     var genre_ids: [Int]
+    var id: Int
+}
+
+// MARK: Video Request
+
+struct Video_Response: Codable {
+    var id: Int
+    var results: [Video]
+}
+
+struct Video: Codable {
+    var id: String
+    var key: String
+    var name: String
+    var site: String
+    var type: String
 }
 
 // MARK: Genre Request
@@ -42,6 +58,7 @@ struct Show_Response: Codable {
 }
 
 struct ShowDetails: Codable {
+    var id: Int
     var poster_path: String
     var name: String
     var first_air_date: String

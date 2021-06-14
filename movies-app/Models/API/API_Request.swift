@@ -41,6 +41,21 @@ struct API_Request {
             .eraseToAnyPublisher()
     }
     
+    // Fetch the trailer videos at the specified endpoint
+    static func fetchTrailerVideos(urlString: String) -> AnyPublisher<[Video], Never> {
+        guard let url = URL(string: urlString) else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: Video_Response.self, decoder: JSONDecoder())
+            .map(\.results)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     // Fetch all possible genres
     static func fetchGenresWithCombine() -> AnyPublisher<[Genre], Never> {
         let urlString = "\(BASE_URL)/genre/movie/list?api_key=\(API_KEY)"

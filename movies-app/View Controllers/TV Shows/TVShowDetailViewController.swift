@@ -6,26 +6,34 @@
 //
 
 import UIKit
+import Combine
 
 // Holds the details of a TV show
 class TVShowDetailViewController: UIViewController {
 
     var show: ShowDetails?
     var genres: String?
+    
+    private var videos = [Video]()
+    private var videoId: String?
+    private var cancellables = Set<AnyCancellable>()
     private let titleLabel = UILabel()
     private let genresLabel = UILabel()
     private let languageLabel = UILabel()
     private let airDateLabel = UILabel()
     private let overviewLabel = UILabel()
+    private let youTubePlayer = YoutubePlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchVideos()
         setupMainView()
         setupTitleLabel()
         setupGenresLabel()
         setupLanguageLabel()
         setupAirDateLabel()
         setupOverviewLabel()
+        setupYoutubePlayer()
     }
 }
 
@@ -55,7 +63,6 @@ extension TVShowDetailViewController {
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
     }
-    
     
     func setupGenresLabel() {
         genresLabel.text = genres ?? ""
@@ -123,5 +130,46 @@ extension TVShowDetailViewController {
             overviewLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             overviewLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
+    }
+    
+    func setupYoutubePlayer() {
+        view.addSubview(youTubePlayer)
+        
+        // Constraints
+        youTubePlayer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            youTubePlayer.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 20),
+            youTubePlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            youTubePlayer.widthAnchor.constraint(equalTo: view.widthAnchor),
+            youTubePlayer.heightAnchor.constraint(equalTo: youTubePlayer.widthAnchor, multiplier: 1080/1920)
+        ])
+    }
+}
+
+extension TVShowDetailViewController {
+    func fetchVideos() {
+        let idString = String(show?.id ?? 0)
+        let urlString = "\(BASE_URL)/tv/\(idString)/videos?api_key=\(API_KEY)"
+        
+        // Make the request to the API
+        API_Request.fetchTrailerVideos(urlString: urlString)
+            .sink { results in
+                self.videos = results
+                
+                DispatchQueue.main.async {
+                    self.youTubePlayer.load(videoId: self.getVideoId())
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func getVideoId() -> String {
+        for video in videos {
+            if video.site == "YouTube" && video.type == "Trailer" {
+                return video.key
+            }
+        }
+        return ""
     }
 }
