@@ -13,15 +13,15 @@ class MovieDetailViewController: UIViewController {
     
     var movie: MovieDetails?
     var genres: String?
+    var videos = [Video]()
+    var youTubePlayer = YoutubePlayer()
+    var cancellables = Set<AnyCancellable>()
     
-    private var videos = [Video]()
     private var videoId: String?
-    private var cancellables = Set<AnyCancellable>()
     private let movieTitleLabel = UILabel()
     private let movieGenresLabel = UILabel()
     private let releaseDateLabel = UILabel()
     private let movieOverviewLabel = UILabel()
-    private let youTubePlayer = YoutubePlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,32 +126,5 @@ extension MovieDetailViewController {
             youTubePlayer.widthAnchor.constraint(equalTo: view.widthAnchor),
             youTubePlayer.heightAnchor.constraint(equalTo: youTubePlayer.widthAnchor, multiplier: 1080/1920)
         ])
-    }
-}
-
-extension MovieDetailViewController {
-    func fetchVideos() {
-        let movieIdString = String(movie?.id ?? 0)
-        let urlString = "\(BASE_URL)/movie/\(movieIdString)/videos?api_key=\(API_KEY)"
-        
-        // Make the request to the API
-        API_Request.fetchTrailerVideos(urlString: urlString)
-            .sink { results in
-                self.videos = results
-                
-                DispatchQueue.main.async {
-                    self.youTubePlayer.load(videoId: self.getVideoId())
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
-    func getVideoId() -> String {
-        for video in videos {
-            if video.site == "YouTube" && video.type == "Trailer" {
-                return video.key
-            }
-        }
-        return ""
     }
 }

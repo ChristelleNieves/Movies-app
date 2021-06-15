@@ -104,5 +104,4 @@ struct API_Request {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
-    
 }

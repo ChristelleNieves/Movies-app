@@ -28,6 +28,7 @@ class YoutubePlayer: UIView {
     
 }
 
+// MARK: View Setup
 
 extension YoutubePlayer {
     
@@ -46,6 +47,7 @@ extension YoutubePlayer {
     }
 }
 
+// MARK: Load Player
 
 extension YoutubePlayer {
     

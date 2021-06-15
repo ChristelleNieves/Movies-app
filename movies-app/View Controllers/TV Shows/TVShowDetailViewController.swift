@@ -13,16 +13,16 @@ class TVShowDetailViewController: UIViewController {
 
     var show: ShowDetails?
     var genres: String?
+    var videos = [Video]()
+    var youTubePlayer = YoutubePlayer()
+    var cancellables = Set<AnyCancellable>()
     
-    private var videos = [Video]()
     private var videoId: String?
-    private var cancellables = Set<AnyCancellable>()
     private let titleLabel = UILabel()
     private let genresLabel = UILabel()
     private let languageLabel = UILabel()
     private let airDateLabel = UILabel()
     private let overviewLabel = UILabel()
-    private let youTubePlayer = YoutubePlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,32 +144,5 @@ extension TVShowDetailViewController {
             youTubePlayer.widthAnchor.constraint(equalTo: view.widthAnchor),
             youTubePlayer.heightAnchor.constraint(equalTo: youTubePlayer.widthAnchor, multiplier: 1080/1920)
         ])
-    }
-}
-
-extension TVShowDetailViewController {
-    func fetchVideos() {
-        let idString = String(show?.id ?? 0)
-        let urlString = "\(BASE_URL)/tv/\(idString)/videos?api_key=\(API_KEY)"
-        
-        // Make the request to the API
-        API_Request.fetchTrailerVideos(urlString: urlString)
-            .sink { results in
-                self.videos = results
-                
-                DispatchQueue.main.async {
-                    self.youTubePlayer.load(videoId: self.getVideoId())
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
-    func getVideoId() -> String {
-        for video in videos {
-            if video.site == "YouTube" && video.type == "Trailer" {
-                return video.key
-            }
-        }
-        return ""
     }
 }
