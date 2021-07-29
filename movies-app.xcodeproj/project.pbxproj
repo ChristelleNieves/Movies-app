@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		BCAAB86B26733C6D00735BAF /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAB86A26733C6D00735BAF /* MovieDetailViewController.swift */; };
 		BCAAB86D2673471700735BAF /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAAB86C2673471700735BAF /* API_Key.swift */; };
+		BCC0129926B1FF4900BCE1D2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCC0129826B1FF4900BCE1D2 /* Colors.xcassets */; };
+		BCC0129B26B200D900BCE1D2 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0129A26B200D900BCE1D2 /* AppColor.swift */; };
+		BCC0129D26B2E80400BCE1D2 /* MainViewController+Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0129C26B2E80300BCE1D2 /* MainViewController+Trending.swift */; };
+		BCC0129F26B2E84700BCE1D2 /* MainViewController+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0129E26B2E84700BCE1D2 /* MainViewController+Button.swift */; };
+		BCC012A126B2E88F00BCE1D2 /* MainViewController+Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC012A026B2E88F00BCE1D2 /* MainViewController+Movies.swift */; };
+		BCC012A326B2E8BB00BCE1D2 /* MainViewController+TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC012A226B2E8BB00BCE1D2 /* MainViewController+TVShows.swift */; };
+		BCC012A526B2F31B00BCE1D2 /* MainViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC012A426B2F31B00BCE1D2 /* MainViewController+Actions.swift */; };
 		BCC0E5EF26752CAF00E12B3E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E5EE26752CAF00E12B3E /* Theme.swift */; };
 		BCC0E5F126752E7000E12B3E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E5F026752E7000E12B3E /* MainViewController.swift */; };
 		BCC0E5F3267570B700E12B3E /* ListModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0E5F2267570B700E12B3E /* ListModes.swift */; };
@@ -34,6 +41,13 @@
 /* Begin PBXFileReference section */
 		BCAAB86A26733C6D00735BAF /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		BCAAB86C2673471700735BAF /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
+		BCC0129826B1FF4900BCE1D2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		BCC0129A26B200D900BCE1D2 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		BCC0129C26B2E80300BCE1D2 /* MainViewController+Trending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Trending.swift"; sourceTree = "<group>"; };
+		BCC0129E26B2E84700BCE1D2 /* MainViewController+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Button.swift"; sourceTree = "<group>"; };
+		BCC012A026B2E88F00BCE1D2 /* MainViewController+Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Movies.swift"; sourceTree = "<group>"; };
+		BCC012A226B2E8BB00BCE1D2 /* MainViewController+TVShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TVShows.swift"; sourceTree = "<group>"; };
+		BCC012A426B2F31B00BCE1D2 /* MainViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Actions.swift"; sourceTree = "<group>"; };
 		BCC0E5EE26752CAF00E12B3E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BCC0E5F026752E7000E12B3E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BCC0E5F2267570B700E12B3E /* ListModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModes.swift; sourceTree = "<group>"; };
@@ -73,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				BCC0E5EE26752CAF00E12B3E /* Theme.swift */,
+				BCC0129A26B200D900BCE1D2 /* AppColor.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -120,6 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				BCC0E5F026752E7000E12B3E /* MainViewController.swift */,
+				BCC0129C26B2E80300BCE1D2 /* MainViewController+Trending.swift */,
+				BCC0129E26B2E84700BCE1D2 /* MainViewController+Button.swift */,
+				BCC012A026B2E88F00BCE1D2 /* MainViewController+Movies.swift */,
+				BCC012A226B2E8BB00BCE1D2 /* MainViewController+TVShows.swift */,
+				BCC012A426B2F31B00BCE1D2 /* MainViewController+Actions.swift */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -131,6 +151,7 @@
 				BCF1BF5F2671B52300FB9217 /* AppDelegate.swift */,
 				BCF1BF6B2671B52500FB9217 /* Assets.xcassets */,
 				BCF1BF6D2671B52500FB9217 /* LaunchScreen.storyboard */,
+				BCC0129826B1FF4900BCE1D2 /* Colors.xcassets */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -260,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCC0129926B1FF4900BCE1D2 /* Colors.xcassets in Resources */,
 				BCF1BF6F2671B52500FB9217 /* LaunchScreen.storyboard in Resources */,
 				BCF1BF6C2671B52500FB9217 /* Assets.xcassets in Resources */,
 			);
@@ -272,13 +294,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCC012A526B2F31B00BCE1D2 /* MainViewController+Actions.swift in Sources */,
 				BCC0E5FB26759E8900E12B3E /* TVShowCell.swift in Sources */,
 				BCF1BF832671BC2900FB9217 /* API_Endpoints.swift in Sources */,
 				BCC0E60F267869C100E12B3E /* MovieDetailVC_Ext.swift in Sources */,
 				BCC0E5F126752E7000E12B3E /* MainViewController.swift in Sources */,
 				BCC0E5EF26752CAF00E12B3E /* Theme.swift in Sources */,
 				BCC0E61126786B9200E12B3E /* TVListVC_Ext.swift in Sources */,
+				BCC0129D26B2E80400BCE1D2 /* MainViewController+Trending.swift in Sources */,
 				BCC0E61326786C5A00E12B3E /* TVShowDetailVC_Ext.swift in Sources */,
+				BCC0129F26B2E84700BCE1D2 /* MainViewController+Button.swift in Sources */,
 				BCAAB86D2673471700735BAF /* API_Key.swift in Sources */,
 				BCF1BF642671B52300FB9217 /* MovieListViewController.swift in Sources */,
 				BCF1BF852671CD0500FB9217 /* MovieCell.swift in Sources */,
@@ -289,6 +314,9 @@
 				BCAAB86B26733C6D00735BAF /* MovieDetailViewController.swift in Sources */,
 				BCC0E5F926759D1800E12B3E /* TVListViewController.swift in Sources */,
 				BCF1BF622671B52300FB9217 /* SceneDelegate.swift in Sources */,
+				BCC0129B26B200D900BCE1D2 /* AppColor.swift in Sources */,
+				BCC012A126B2E88F00BCE1D2 /* MainViewController+Movies.swift in Sources */,
+				BCC012A326B2E8BB00BCE1D2 /* MainViewController+TVShows.swift in Sources */,
 				BCC0E5FD2675ADFF00E12B3E /* TVShowDetailViewController.swift in Sources */,
 				BCF1BF7F2671B9BA00FB9217 /* API_Request.swift in Sources */,
 				BCF1BF812671BA1F00FB9217 /* API_Response.swift in Sources */,

@@ -34,7 +34,7 @@ class TVShowCell: UITableViewCell {
 extension TVShowCell {
     
     func setupMainView() {
-        contentView.backgroundColor = .black.withAlphaComponent(0.87)
+        contentView.backgroundColor = AppColor.AppDarkBackground
     }
     
     func setupPhoto() {

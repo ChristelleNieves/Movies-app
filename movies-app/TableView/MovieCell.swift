@@ -31,7 +31,7 @@ class MovieCell: UITableViewCell {
 // MARK: UI Setup
 extension MovieCell {
     func setupView() {
-        contentView.backgroundColor = .black.withAlphaComponent(0.87)
+        contentView.backgroundColor = AppColor.AppDarkBackground
     }
     
     func setupPhoto() {

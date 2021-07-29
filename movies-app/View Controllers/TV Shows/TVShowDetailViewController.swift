@@ -44,6 +44,7 @@ extension TVShowDetailViewController {
     func setupMainView() {
         title = "TV Show Details"
         view.backgroundColor = .black.withAlphaComponent(0.95)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setupTitleLabel() {

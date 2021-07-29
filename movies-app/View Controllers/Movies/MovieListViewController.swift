@@ -78,6 +78,11 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
 extension MovieListViewController {
     
     func setupMainView() {
+        view.backgroundColor = AppColor.AppDarkBackground
+        navigationController?.navigationBar.tintColor = AppColor.AppAccentHotPink
+        navigationController?.navigationBar.barTintColor = AppColor.AppDarkBackground
+        
+        
         // Set title according to mode
         switch mode {
         case .Trending:
@@ -99,7 +104,7 @@ extension MovieListViewController {
         tableView.dataSource = self
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
         tableView.rowHeight = 300
-        tableView.backgroundColor = .black.withAlphaComponent(0.87)
+        tableView.backgroundColor = AppColor.AppDarkBackground
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         view.addSubview(tableView)

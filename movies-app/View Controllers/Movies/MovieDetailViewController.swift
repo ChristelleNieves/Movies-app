@@ -40,7 +40,8 @@ extension MovieDetailViewController {
     
     func setupMainView() {
         title = "Movie Details"
-        view.backgroundColor = .black.withAlphaComponent(0.95)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        view.backgroundColor = AppColor.AppDarkBackground?.withAlphaComponent(0.95)
     }
     
     func setupMovieTitleLabel() {

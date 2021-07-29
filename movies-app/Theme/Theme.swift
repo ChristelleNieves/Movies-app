@@ -14,7 +14,7 @@ struct Colors {
 }
 
 struct Fonts {
-    static let heading = UIFont.monospacedDigitSystemFont(ofSize: 35, weight: .light)
+    static let heading = UIFont.systemFont(ofSize: 20, weight: .medium)
 }
 
 struct Alphas {

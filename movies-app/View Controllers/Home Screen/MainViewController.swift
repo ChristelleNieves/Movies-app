@@ -9,278 +9,254 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    // Top Section
+    let topLabel = UILabel()
+    let searchButton = UIButton()
+    
     // Trending Today section
-    private var todayLabel = UILabel()
-    private var todayMoviesButton = UIButton()
-    private var todayShowsButton = UIButton()
+    private var trendingLabel = UILabel()
+    private let trendingView = TrendingView()
     
     // Movies section
     private var moviesLabel = UILabel()
-    private var nowPlayingButton = UIButton()
-    private var upcomingMoviesButton = UIButton()
-    private var topRatedMoviesButton = UIButton()
-    private var popularMoviesButton = UIButton()
+    private var moviesView = MoviesView()
     
     // TV Shows section
     private var showsLabel = UILabel()
-    private var topRatedShowsButton = UIButton()
-    private var popularShowsButton = UIButton()
-    private var airingTodayButton = UIButton()
-    private var currentlyAiringButton = UIButton()
-    
+    private var showsView = TVShowsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainView()
-        setupNav()
-        
-        // Trending Today section
-        setupTodayLabel()
-        setupTodayMoviesButton()
-        setupTodayShowsButton()
-        
-        // Movies Section
+        setupTopLabel()
+        setupSearchButton()
+        setupTrendingLabel()
+        setupTrendingView()
         setupMoviesLabel()
-        setupNowPlayingButton()
-        setupUpcomingMoviesButton()
-        setupTopRatedMoviesButton()
-        setupPopularMoviesButton()
-        
-        // TV Shows section
+        setupMoviesView()
         setupShowsLabel()
-        setupTopRatedShowsButton()
-        setupPopularShowsButton()
-        setupAiringTodayButton()
-        setupCurrentlyAiringButton()
+        setupShowsView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
 // MARK: UI Setup
 extension MainViewController {
     func setupMainView() {
-        title = "Discover Movies & TV Shows"
-        view.backgroundColor = .black
+        view.backgroundColor = AppColor.AppDarkBackground
     }
     
-    func setupNav() {
-        navigationController?.navigationBar.tintColor = Colors.purple
-    }
-    
-    func setupTodayLabel() {
-        configureHeading(label: todayLabel, title: "Trending Today")
+    func setupTopLabel() {
+        topLabel.text = "Discover Movies & TV Shows"
+        topLabel.font = UIFont.systemFont(ofSize: 27, weight: .medium)
+        topLabel.textColor = AppColor.AppAccentHotPink
+        topLabel.numberOfLines = 0
+        topLabel.lineBreakMode = .byWordWrapping
+        view.addSubview(topLabel)
         
         // Constraints
-        todayLabel.translatesAutoresizingMaskIntoConstraints = false
+        topLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            todayLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            todayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5)
+            topLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            topLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            topLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.70)
         ])
     }
     
-    func setupTodayMoviesButton() {
-        configureButton(button: todayMoviesButton, title: "Movies")
-        
-        todayMoviesButton.addAction(UIAction { action in
-            self.openMovieListVC(mode: MovieMode.Trending)
-        }, for: .touchUpInside)
+    func setupSearchButton() {
+        let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium)
+        searchButton.setImage(UIImage(systemName: "magnifyingglass", withConfiguration: config), for: .normal)
+        searchButton.imageView?.tintColor = AppColor.AppSubheadingText
+        view.addSubview(searchButton)
         
         // Constraints
-        todayMoviesButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            todayMoviesButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 15),
-            todayMoviesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            todayMoviesButton.widthAnchor.constraint(equalToConstant: 175),
-            todayMoviesButton.heightAnchor.constraint(equalToConstant: 70)
+            searchButton.topAnchor.constraint(equalTo: topLabel.topAnchor),
+            searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            searchButton.heightAnchor.constraint(equalToConstant: 50),
+            searchButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    func setupTodayShowsButton() {
-        configureButton(button: todayShowsButton, title: "TV Shows")
+    func setupTrendingLabel() {
+        configureHeading(label: trendingLabel, title: "Trending Today")
         
-        todayShowsButton.addAction(UIAction { action in
-            let listVC = TVListViewController()
-            listVC.mode = TVMode.Trending
-            self.navigationController?.pushViewController(listVC, animated: true)
+        // Setup the flame icon
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        let flameIcon = UIImageView(image: UIImage(systemName: "flame.fill", withConfiguration: config))
+        flameIcon.tintColor = AppColor.AppAccentHotPink
+        flameIcon.contentMode = .scaleAspectFit
+        view.addSubview(flameIcon)
+        
+        // Icon constraints
+        flameIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            flameIcon.leadingAnchor.constraint(equalTo: trendingLabel.trailingAnchor, constant: 10),
+            flameIcon.topAnchor.constraint(equalTo: trendingLabel.topAnchor),
+            flameIcon.bottomAnchor.constraint(equalTo: trendingLabel.bottomAnchor)
+        ])
+        
+        // Constraints
+        trendingLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            trendingLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 40),
+            trendingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+    }
+    
+    func setupTrendingView() {
+        view.addSubview(trendingView)
+        
+        // Set movies button action
+        trendingView.moviesButton.addAction(UIAction { action in
+            self.gotoMovieList(mode: MovieMode.Trending)
+        }, for: .touchUpInside)
+        
+        // Set tv shows button action
+        trendingView.showsButton.addAction(UIAction { action in
+            self.gotoTVShowList(mode: TVMode.Trending)
         }, for: .touchUpInside)
         
         // Constraints
-        todayShowsButton.translatesAutoresizingMaskIntoConstraints = false
+        trendingView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            todayShowsButton.topAnchor.constraint(equalTo: todayMoviesButton.topAnchor),
-            todayShowsButton.leadingAnchor.constraint(equalTo: todayMoviesButton.trailingAnchor, constant: 10),
-            todayShowsButton.widthAnchor.constraint(equalToConstant: 175),
-            todayShowsButton.heightAnchor.constraint(equalToConstant: 70)
+            trendingView.topAnchor.constraint(equalTo: trendingLabel.bottomAnchor, constant: 20),
+            trendingView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            trendingView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/9)
         ])
     }
     
     func setupMoviesLabel() {
         configureHeading(label: moviesLabel, title: "Movies")
         
+        // Setup the flame icon
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        let movieIcon = UIImageView(image: UIImage(systemName: "film", withConfiguration: config))
+        movieIcon.tintColor = AppColor.AppAccentHotPink
+        movieIcon.contentMode = .scaleAspectFit
+        view.addSubview(movieIcon)
+        
+        // Icon constraints
+        movieIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            movieIcon.leadingAnchor.constraint(equalTo: moviesLabel.trailingAnchor, constant: 10),
+            movieIcon.topAnchor.constraint(equalTo: moviesLabel.topAnchor),
+            movieIcon.bottomAnchor.constraint(equalTo: moviesLabel.bottomAnchor)
+        ])
+        
         // Constraints
         moviesLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            moviesLabel.topAnchor.constraint(equalTo: todayShowsButton.bottomAnchor, constant: 30),
-            moviesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5)
+            moviesLabel.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 30),
+            moviesLabel.leadingAnchor.constraint(equalTo: trendingLabel.leadingAnchor)
         ])
     }
     
-    func setupNowPlayingButton() {
-        configureButton(button: nowPlayingButton, title: "Now Playing")
+    func setupMoviesView() {
+        view.addSubview(moviesView)
         
-        nowPlayingButton.addAction(UIAction { action in
-            self.openMovieListVC(mode: MovieMode.NowPlaying)
+        // Set button actions
+        moviesView.nowPlayingButton.addAction(UIAction { action in
+            self.gotoMovieList(mode: MovieMode.NowPlaying)
+        }, for: .touchUpInside)
+        
+        moviesView.upcomingButton.addAction(UIAction { action in
+            self.gotoMovieList(mode: MovieMode.Upcoming)
+        }, for: .touchUpInside)
+        
+        moviesView.topRatedButton.addAction(UIAction { action in
+            self.gotoMovieList(mode: MovieMode.TopRated)
+        }, for: .touchUpInside)
+        
+        moviesView.popularButton.addAction(UIAction { action in
+            self.gotoMovieList(mode: MovieMode.Popular)
         }, for: .touchUpInside)
         
         // Constraints
-        nowPlayingButton.translatesAutoresizingMaskIntoConstraints = false
+        moviesView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nowPlayingButton.topAnchor.constraint(equalTo: moviesLabel.bottomAnchor, constant: 15),
-            nowPlayingButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            nowPlayingButton.widthAnchor.constraint(equalToConstant: 175),
-            nowPlayingButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupUpcomingMoviesButton() {
-        configureButton(button: upcomingMoviesButton, title: "Upcoming")
-        
-        upcomingMoviesButton.addAction(UIAction { action in
-            self.openMovieListVC(mode: MovieMode.Upcoming)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        upcomingMoviesButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            upcomingMoviesButton.topAnchor.constraint(equalTo: nowPlayingButton.topAnchor),
-            upcomingMoviesButton.leadingAnchor.constraint(equalTo: nowPlayingButton.trailingAnchor, constant: 10),
-            upcomingMoviesButton.widthAnchor.constraint(equalToConstant: 175),
-            upcomingMoviesButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupTopRatedMoviesButton() {
-        configureButton(button: topRatedMoviesButton, title: "Top Rated")
-        
-        topRatedMoviesButton.addAction(UIAction { action in
-            self.openMovieListVC(mode: MovieMode.TopRated)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        topRatedMoviesButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            topRatedMoviesButton.topAnchor.constraint(equalTo: nowPlayingButton.bottomAnchor, constant: 15),
-            topRatedMoviesButton.leadingAnchor.constraint(equalTo: nowPlayingButton.leadingAnchor),
-            topRatedMoviesButton.widthAnchor.constraint(equalToConstant: 175),
-            topRatedMoviesButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupPopularMoviesButton() {
-        configureButton(button: popularMoviesButton, title: "Popular")
-        
-        popularMoviesButton.addAction(UIAction { action in
-            self.openMovieListVC(mode: MovieMode.Popular)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        popularMoviesButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            popularMoviesButton.topAnchor.constraint(equalTo: topRatedMoviesButton.topAnchor),
-            popularMoviesButton.leadingAnchor.constraint(equalTo: topRatedMoviesButton.trailingAnchor, constant: 10),
-            popularMoviesButton.widthAnchor.constraint(equalToConstant: 175),
-            popularMoviesButton.heightAnchor.constraint(equalToConstant: 70)
+            moviesView.topAnchor.constraint(equalTo: moviesLabel.bottomAnchor, constant: 20),
+            moviesView.leadingAnchor.constraint(equalTo: trendingLabel.leadingAnchor),
+            moviesView.trailingAnchor.constraint(equalTo: trendingView.trailingAnchor),
+            moviesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5.7)
         ])
     }
     
     func setupShowsLabel() {
         configureHeading(label: showsLabel, title: "TV Shows")
         
+        // Setup the flame icon
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        let showsIcon = UIImageView(image: UIImage(systemName: "tv", withConfiguration: config))
+        showsIcon.tintColor = AppColor.AppAccentHotPink
+        showsIcon.contentMode = .scaleAspectFit
+        view.addSubview(showsIcon)
+        
+        // Icon constraints
+        showsIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            showsIcon.leadingAnchor.constraint(equalTo: showsLabel.trailingAnchor, constant: 10),
+            showsIcon.topAnchor.constraint(equalTo: showsLabel.topAnchor),
+            showsIcon.bottomAnchor.constraint(equalTo: showsLabel.bottomAnchor)
+        ])
+        
         // Constraints
         showsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            showsLabel.topAnchor.constraint(equalTo: topRatedMoviesButton.bottomAnchor, constant: 30),
-            showsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5)
+            showsLabel.topAnchor.constraint(equalTo: moviesView.bottomAnchor, constant: 30),
+            showsLabel.leadingAnchor.constraint(equalTo: trendingLabel.leadingAnchor)
         ])
     }
     
-    func setupTopRatedShowsButton() {
-        configureButton(button: topRatedShowsButton, title: "Top Rated")
+    func setupShowsView() {
+        view.addSubview(showsView)
         
-        topRatedShowsButton.addAction(UIAction { action in
-            self.openTVListVC(mode: TVMode.TopRated)
+        // Add button actions
+        showsView.topRatedButton.addAction(UIAction { action in
+            self.gotoTVShowList(mode: TVMode.TopRated)
+        }, for: .touchUpInside)
+        
+        showsView.popularButton.addAction(UIAction { action in
+            self.gotoTVShowList(mode: TVMode.Popular)
+        }, for: .touchUpInside)
+        
+        showsView.airingTodayButton.addAction(UIAction { action in
+            self.gotoTVShowList(mode: TVMode.AiringToday)
+        }, for: .touchUpInside)
+        
+        showsView.currentlyAiringButton.addAction(UIAction { action in
+            self.gotoTVShowList(mode: TVMode.CurrentlyAiring)
         }, for: .touchUpInside)
         
         // Constraints
-        topRatedShowsButton.translatesAutoresizingMaskIntoConstraints = false
+        showsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            topRatedShowsButton.topAnchor.constraint(equalTo: showsLabel.bottomAnchor, constant: 15),
-            topRatedShowsButton.leadingAnchor.constraint(equalTo: nowPlayingButton.leadingAnchor),
-            topRatedShowsButton.widthAnchor.constraint(equalToConstant: 175),
-            topRatedShowsButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupPopularShowsButton() {
-        configureButton(button: popularShowsButton, title: "Popular")
-        
-        popularShowsButton.addAction(UIAction { action in
-            self.openTVListVC(mode: TVMode.Popular)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        popularShowsButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            popularShowsButton.topAnchor.constraint(equalTo: topRatedShowsButton.topAnchor),
-            popularShowsButton.leadingAnchor.constraint(equalTo: topRatedShowsButton.trailingAnchor, constant: 10),
-            popularShowsButton.widthAnchor.constraint(equalToConstant: 175),
-            popularShowsButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupAiringTodayButton() {
-        configureButton(button: airingTodayButton, title: "Airing Today")
-        
-        airingTodayButton.addAction(UIAction { action in
-            self.openTVListVC(mode: TVMode.AiringToday)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        airingTodayButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            airingTodayButton.topAnchor.constraint(equalTo: topRatedShowsButton.bottomAnchor, constant: 15),
-            airingTodayButton.leadingAnchor.constraint(equalTo: topRatedShowsButton.leadingAnchor),
-            airingTodayButton.widthAnchor.constraint(equalToConstant: 175),
-            airingTodayButton.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
-    
-    func setupCurrentlyAiringButton() {
-        configureButton(button: currentlyAiringButton, title: "Currently Airing")
-        
-        currentlyAiringButton.addAction(UIAction { action in
-            self.openTVListVC(mode: TVMode.CurrentlyAiring)
-        }, for: .touchUpInside)
-        
-        // Constraints
-        currentlyAiringButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            currentlyAiringButton.topAnchor.constraint(equalTo: airingTodayButton.topAnchor),
-            currentlyAiringButton.leadingAnchor.constraint(equalTo: airingTodayButton.trailingAnchor, constant: 10),
-            currentlyAiringButton.widthAnchor.constraint(equalToConstant: 175),
-            currentlyAiringButton.heightAnchor.constraint(equalToConstant: 70)
+            showsView.topAnchor.constraint(equalTo: showsLabel.bottomAnchor, constant: 20),
+            showsView.leadingAnchor.constraint(equalTo: trendingView.leadingAnchor),
+            showsView.trailingAnchor.constraint(equalTo: trendingView.trailingAnchor),
+            showsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5.7)
         ])
     }
 }
@@ -317,7 +293,7 @@ extension MainViewController {
     func configureHeading(label: UILabel, title: String) {
         label.text = title
         label.font = Fonts.heading
-        label.textColor = Colors.heading
+        label.textColor = AppColor.AppHeadingText
         view.addSubview(label)
     }
 }

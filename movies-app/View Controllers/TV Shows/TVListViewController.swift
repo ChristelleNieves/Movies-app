@@ -70,6 +70,10 @@ class TVListViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension TVListViewController {
     
     func setupMainView() {
+        view.backgroundColor = AppColor.AppDarkBackground
+        navigationController?.navigationBar.barTintColor = AppColor.AppDarkBackground
+        navigationController?.navigationBar.tintColor = AppColor.AppAccentHotPink
+        
         // Set the title of the TVListViewController according to the current mode
         switch mode {
         case .Trending:
@@ -91,7 +95,7 @@ extension TVListViewController {
         tableView.dataSource = self
         tableView.register(TVShowCell.self, forCellReuseIdentifier: "TVShowCell")
         tableView.rowHeight = 300
-        tableView.backgroundColor = .black.withAlphaComponent(0.87)
+        tableView.backgroundColor = AppColor.AppDarkBackground
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         view.addSubview(tableView)
