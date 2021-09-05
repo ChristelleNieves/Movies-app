@@ -14,6 +14,6 @@ Tech Specifications:
  - Uses data from the Movie Database API
  - Uses Combine framework to handle API requests
 
-![IMG_9741](https://user-images.githubusercontent.com/29238419/132117686-981875d0-80e3-4516-8b09-69078e5fb8c8.PNG)
-![IMG_9742](https://user-images.githubusercontent.com/29238419/132117687-c099554f-57ff-4de0-9de2-e6ed69964c25.PNG)
-![IMG_9743](https://user-images.githubusercontent.com/29238419/132117693-1e9efa25-779d-4178-85be-c4c41988077c.PNG)
+![IMG_9741](https://user-images.githubusercontent.com/29238419/132117756-1fd05050-f110-415e-8e95-0925d22c0b54.png)
+![IMG_9742](https://user-images.githubusercontent.com/29238419/132117757-1e8013c8-8336-47f0-bb1a-a7ca37208fe5.png)
+![IMG_9743](https://user-images.githubusercontent.com/29238419/132117758-6c510cc1-c0bd-4b51-b01b-223ea5d95ea9.png)
