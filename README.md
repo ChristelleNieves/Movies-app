@@ -14,9 +14,6 @@ Tech Specifications:
  - Uses data from the Movie Database API
  - Uses Combine framework to handle API requests
 
-![Screen Shot 2021-06-13 at 11 06 14 PM](https://user-images.githubusercontent.com/29238419/121834167-0ec9c200-cc9c-11eb-8316-022681b7332b.png)
-![Screen Shot 2021-06-13 at 3 18 47 AM](https://user-images.githubusercontent.com/29238419/121798865-ba203b80-cbf6-11eb-96f1-9e059136f65c.png)
-![Screen Shot 2021-06-14 at 2 49 38 AM](https://user-images.githubusercontent.com/29238419/121851082-b4d8f480-ccbb-11eb-89d6-1acd0de75a92.png)
-![Screen Shot 2021-06-13 at 3 20 28 AM](https://user-images.githubusercontent.com/29238419/121798867-ba203b80-cbf6-11eb-92a8-cf97cc392ba9.png)
-![Screen Shot 2021-06-13 at 3 21 07 AM](https://user-images.githubusercontent.com/29238419/121798869-bab8d200-cbf6-11eb-83de-12efb52be325.png)
-![Screen Shot 2021-06-14 at 2 52 56 AM](https://user-images.githubusercontent.com/29238419/121851093-b6a2b800-ccbb-11eb-9be5-b107da89ffd2.png)
+![IMG_9741](https://user-images.githubusercontent.com/29238419/132117686-981875d0-80e3-4516-8b09-69078e5fb8c8.PNG)
+![IMG_9742](https://user-images.githubusercontent.com/29238419/132117687-c099554f-57ff-4de0-9de2-e6ed69964c25.PNG)
+![IMG_9743](https://user-images.githubusercontent.com/29238419/132117693-1e9efa25-779d-4178-85be-c4c41988077c.PNG)
